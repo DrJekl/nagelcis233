@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Models\TvMazeAPI;
+use App\Models\TvMazeAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +15,10 @@ use app\Models\TvMazeAPI;
 */
 
 Route::get('/episodes', function () {
-    // $number = intval(request()->query("number"));
-    // $number = $number ?: 1;
-    // $episodes = TvMazeAPI::fetchEpisode($number);
-    return view('episodes/index');
+    $number = intval(request()->query("showNumber"));
+    $number = $number ?: 1;
+    $episodes = TvMazeAPI::fetchEpisode($number);
+    return view('episodes/index', ['episodes' => $episodes]);
 });
 
 Route::get('/', function () {
