@@ -15,7 +15,7 @@ use App\Models\TvMazeAPI;
 */
 
 Route::get('/episodes', function () {
-    $number = intval(request()->query("number"));
+    $number = intval(request()->query("showNumber"));
     $number = $number ?: 1;
     $episodes = TvMazeAPI::fetchEpisode($number);
     return view('episodes/index', ['episodes' => $episodes]);

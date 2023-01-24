@@ -12,7 +12,7 @@ class TvMazeAPI {
         $episodesData = Http::get("https://api.tvmaze.com/shows/$number/episodes")->json();
         $episodesCollection = collect($episodesData);        
         return $episodesCollection->map(function($episode) {
-            return new Episode($episode["name"], $episode["image"]["medium"], $episode["season"], "test", $episode["summary"]);
+            return new Episode($episode["name"], $episode["image"]["medium"], $episode["season"], $episode["number"], $episode["summary"]);
         });
     }
 }
