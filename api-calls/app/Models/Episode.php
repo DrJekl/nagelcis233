@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-class Episode {
-    function __construct(
-        public $name,
-        public $image,
-        public $season,
-        public $episode,
-        public $summary
-    )
-    {
-    }
-  
+use Illuminate\Database\Eloquent\Model;
+
+class Episode extends Model {
+    // Allows mass assignment
+    protected $fillable = ["name", "image", "season", "episode", "summary", "show_number"];
 }

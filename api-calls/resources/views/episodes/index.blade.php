@@ -9,20 +9,22 @@
     <body>
         <h1>Episodes</h1>
         <div class="row">
-        @foreach($episodes as $episode)
-        <div class="col-3" style="display: flex">
-            <div class="card h-10" style="display: flex; flex-direction: column; flex-grow: 1; margin-bottom: 20px">
-            <img src="<?= $episode->image; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?= $episode->name ?></h5>
-                <p class="card-text"><?= $episode->summary ?></p>
-            </div>
-            <div class="card-footer">
-            <small class="text-muted">Season <?= $episode->season; ?>, Episode <?= $episode->episode; ?></small>
-            </div>
-            </div>
-        </div>
-        @endforeach
-        </div>        
+            @forelse($episodes as $episode)
+                <div class="col-3" style="display: flex">
+                    <div class="card h-10" style="display: flex; flex-direction: column; flex-grow: 1; margin-bottom: 20px">
+                        <img src="<?= $episode->image; ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $episode->name ?></h5>
+                            <p class="card-text"><?= $episode->summary ?></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Season <?= $episode->season; ?>, Episode <?= $episode->episode; ?></small>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <h2>No new episodes to show</h2>
+            @endforelse
+        </div> 
     </body>
 </html>
