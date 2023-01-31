@@ -8,11 +8,18 @@ use Illuminate\Support\Collection;
 // $response = Http::get("http://example.com");
 
 class TvMazeAPI {
-    static function fetchEpisode($number) {
-        $episodesData = Http::get("https://api.tvmaze.com/shows/$number/episodes")->json();
-        $episodesCollection = collect($episodesData);        
-        return $episodesCollection->map(function($episode) {
-            return new Episode($episode["name"], $episode["image"]["medium"], $episode["season"], $episode["number"], $episode["summary"]);
+    static function fetchEpisode($showNumber) {
+        $episodesData = Http::get("https://api.tvmaze.com/shows/$showNumber/episodes")->json();
+        $episodesCollection = collect($episodesData);
+        return $episodesCollection->map(function ($episode) use ($showNumber) {
+            return Episode::firstOrCreate([
+                "name"=>$episode["name"], 
+                "image"=>$episode["image"]["medium"], 
+                "season"=>$episode["season"], 
+                "episode"=>$episode["number"], 
+                "summary"=>strip_tags($episode["summary"]),
+                "show_number"=>$showNumber
+            ]);
         });
     }
 }
