@@ -9,7 +9,7 @@
     <div style="width: 90%; margin: auto; padding: 40px">
         <h1>CRUD App</h1>
         @if (session()->get("success"))
-        <div class="bg-success w-50">
+        <div class="text-bg-success w-50">
             {{ session()->get("success") }}
         </div>
         @endif
