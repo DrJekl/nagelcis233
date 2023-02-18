@@ -1,3 +1,11 @@
+@if ($errors->any())
+<div class="bg-warning w-50">
+@foreach ($errors->all() as $error)
+<span>{{ $error }}</span><br>
+@endforeach
+</div>
+@endif
+
 <div class="mb-3">
     <label for="productName" class="form-label">Product Name</label>
 <div class="input-group">
