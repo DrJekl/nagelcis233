@@ -10,4 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ["name", "price", "description", "item_number", "image"];
+
+    public function review() {
+        return $this->belongsTo(Review::class);
+    }
 }
