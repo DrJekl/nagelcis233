@@ -12,6 +12,6 @@ class Review extends Model
     protected $fillable = ["comment", "rating", "product_id"];
 
     public function product() {
-        return $this->hasMany(Review::class);
+        return $this->belongsTo(Product::class);
     }
 }
