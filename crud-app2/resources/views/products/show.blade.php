@@ -19,12 +19,12 @@
 
     </div>
 </div>
-<div class="d-flex justify-content-center mt-3">
+<div class="d-flex justify-content-center mt-4">
     <form method="POST" action="{{ route('reviews.store') }}" class="w-50">
         @csrf
         <div class="form-group">
             <label for="ratingSelect">Rate</label>
-            <select name="rating" class="form-control" id="ratingSelect">
+            <select name="rating" class="form-control text-warning" id="ratingSelect">
                 @php
                 $starCode = "&#9733;";
                 $starSymbol = html_entity_decode($starCode);
@@ -32,11 +32,6 @@
                 @foreach(range(1, 5) as $stars)
                 <option value="{{ $stars }}">{{ str_repeat($starSymbol, $stars) }}</option>
                 @endforeach
-            <!-- <option><span>&#9733;</span></option>
-            <option><span>&#9733;</span><span>&#9733;</span></option>
-            <option><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></option>
-            <option><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></option>
-            <option><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></option> -->
             </select>
         </div>
         <div class="form-group">
@@ -50,6 +45,25 @@
             <button class="btn btn-primary" type="submit">Submit Review</button>
         </div>
     </form>
+</div>
+<div class="container d-flex row justify-content-center mt-4">
+    @if(count($product->reviews) > 0)
+        @foreach($product->reviews as $review)
+        <div class="card col-3 m-3">
+            <div class="card-body">
+                <h5>Rating: <span class="text-warning">{{ str_repeat($starSymbol, $review->rating) }}</span></h5>
+                <p>{{ $review->comment }}</p>
+                <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" onSubmit="return confirm('Are you sure?')">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        @endforeach
+    @else
+    <h4>No reviews yet</h4>
+    @endif
 </div>
 
 @endsection("content")

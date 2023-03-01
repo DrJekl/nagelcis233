@@ -11,7 +11,7 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Rating</th>
+            <th scope="col">Rating(s)</th>
             <th scope="col">Item Number</th>
             <th scope="col">Image</th>
             <th scope="col">Modify</th>
@@ -31,10 +31,10 @@
             </th>
             <td><span class="d-flex align-content-center flex-wrap">${{ $product->price }}</span></td>
             <td>
-                @if(count($product->review) > 0)
+                @if(count($product->reviews) > 0)
                 <ul style="list-style: none; padding: 0; margin: 0; max-height: 120px; overflow-y: auto">
-                    @foreach($product->review as $review)
-                    <li>{{ str_repeat($starSymbol, $review->rating) }}</li>
+                    @foreach($product->reviews as $review)
+                        <li class="text-warning">{{ str_repeat($starSymbol, $review->rating) }}</li>
                     @endforeach
                 </ul>
                 @else
