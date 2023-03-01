@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::with('reviews')->paginate(10);
         return view("products.index", ["products" => $products]);
     }
 
@@ -42,7 +42,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
+        // Also do eager loading for reviews
+        $product = Product::with('reviews')->findOrFail($id);
         return view("products.show", ["product" => $product]);
     }
 

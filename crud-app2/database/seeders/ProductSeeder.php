@@ -12,11 +12,12 @@ class ProductSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+    const QUANTITY = 30;
     public function run(): void
     {
         Product::query()->delete();
         Product::factory()
-                    ->count(30)
+                    ->count(self::QUANTITY)
                     ->create();
     }
 }

@@ -8,6 +8,13 @@
 <body>
     <div style="width: 90%; margin: auto; padding: 40px">
         <h1>CRUD App</h1>
+        @if ($errors->any())
+        <div class="text-bg-danger w-50">
+        @foreach ($errors->all() as $error)
+        <span>{{ $error }}</span><br>
+        @endforeach
+        </div>
+        @endif
         @if (session()->get("success"))
         <div class="text-bg-success w-50">
             {{ session()->get("success") }}

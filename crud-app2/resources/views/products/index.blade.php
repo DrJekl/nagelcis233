@@ -11,12 +11,17 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
+            <th scope="col">Rating(s)</th>
             <th scope="col">Item Number</th>
             <th scope="col">Image</th>
             <th scope="col">Modify</th>
         </tr>
     </thead>
     <tbody>
+        @php
+            $starCode = "&#9733;";
+            $starSymbol = html_entity_decode($starCode);
+        @endphp
         @foreach ($products as $product)
         <tr>
             <th scope="row">
@@ -25,6 +30,17 @@
                 </a>
             </th>
             <td><span class="d-flex align-content-center flex-wrap">${{ $product->price }}</span></td>
+            <td>
+                @if(count($product->reviews) > 0)
+                <ul style="list-style: none; padding: 0; margin: 0; max-height: 120px; overflow-y: auto">
+                    @foreach($product->reviews as $review)
+                        <li class="text-warning">{{ str_repeat($starSymbol, $review->rating) }}</li>
+                    @endforeach
+                </ul>
+                @else
+                <span class="d-flex align-content-center flex-wrap">No reviews yet</span>
+                @endif
+            </td>
             <td><span class="d-flex align-content-center flex-wrap">Item # {{ $product->item_number }}</span></td>
             <td><img class="img-thumbnail" width="150" src="{{ $product->image }}" alt="{{ $product->name }}"></td>
             <td>
