@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::resource("products", ProductController::class);
 
 Route::resource("reviews", ReviewController::class);
+
+Route::resource("users", UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
