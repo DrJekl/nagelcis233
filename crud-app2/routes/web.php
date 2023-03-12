@@ -25,7 +25,7 @@ Route::resource("products", ProductController::class);
 
 Route::resource("reviews", ReviewController::class);
 
-Route::resource("users", UserController::class);
+Route::resource("users", UserController::class)->middleware("auth");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("dashboard")
 
 @section("content")
 <div class="d-flex flex-row justify-content-around w-50 p-4">

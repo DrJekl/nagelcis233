@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("dashboard")
 
 @section("content")
 <h3 class="d-flex justify-content-center">Products</h3>
