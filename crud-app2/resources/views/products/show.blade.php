@@ -53,11 +53,13 @@
             <div class="card-body">
                 <h5>Rating: <span class="text-warning">{{ str_repeat($starSymbol, $review->rating) }}</span></h5>
                 <p>{{ $review->comment }}</p>
+                @can("delete", App\Models\User::class)
                 <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" onSubmit="return confirm('Are you sure?')">
                     @csrf
                     @method("DELETE")
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                @endcan
             </div>
         </div>
         @endforeach

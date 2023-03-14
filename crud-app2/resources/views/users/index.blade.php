@@ -2,6 +2,12 @@
 
 @section("content")
 <h3 class="d-flex justify-content-center">Users</h3>
+@can("create", App\Models\User::class)
+<a href="{{ route('users.create') }}" class="btn btn-primary py-1">Add User</a>
+@endcan
+<div class="my-3">
+    {{ $users->links() }}
+</div>
 <table class="table">
     <thead>
         <tr>

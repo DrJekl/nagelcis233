@@ -21,11 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("products", ProductController::class);
+Route::middleware("auth")->group(function() {
+    Route::resource("products", ProductController::class);
+    Route::resource("reviews", ReviewController::class);
+    Route::resource("users", UserController::class)->middleware("auth");
+});
 
-Route::resource("reviews", ReviewController::class);
-
-Route::resource("users", UserController::class)->middleware("auth");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

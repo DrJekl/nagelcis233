@@ -6,6 +6,7 @@
 @csrf
 @method("PUT")
 @include("users.form")
+<input type="hidden" name="role" value="{{ $user->role }}">
 <div class="form-group">
     <button class="btn btn-primary" type="submit">Update User</button>
     <a href="{{ route('users.index') }}" class="btn btn-danger">Cancel</a>
