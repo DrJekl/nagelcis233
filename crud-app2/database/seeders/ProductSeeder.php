@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     const QUANTITY = 30;
     public function run(): void
     {
-        Product::query()->delete();
+        // Product::query()->delete();
         Product::factory()
                     ->count(self::QUANTITY)
                     ->create();

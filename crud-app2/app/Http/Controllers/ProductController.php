@@ -50,8 +50,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
+        if ($request->user()->cannot("update", User::class)) {
+            return redirect()->route("products.index")->with("error", "You do not have permission to view this page");
+        }
         $product = Product::findOrFail($id);
         return view("products.edit", ["product" => $product]);
     }
@@ -60,14 +63,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if ($request->user()->cannot("update", User::class)) {
+            return redirect()->route("products.index")->with("error", "You do not have permission to view this page");
+        }
         Product::find($id)->update($this->validatedData($request));
         return redirect()->route("products.index")->with("success", "Product was updated");
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(Request $request, string $id): RedirectResponse
     {
+        if ($request->user()->cannot("delete", User::class)) {
+            return redirect()->route("products.index")->with("error", "You do not have permission to view this page");
+        }
         $product = Product::find($id);
         $product->delete();
 

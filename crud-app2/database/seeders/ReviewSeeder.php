@@ -23,7 +23,7 @@ class ReviewSeeder extends Seeder
         //             ->count(rand(1, 3))
         //             ->create(["product_id"=>$product]);
         // }
-        Review::query()->delete();
+        // Review::query()->delete();
         Review::factory()
                     ->count(self::QUANTITY)
                     ->create();

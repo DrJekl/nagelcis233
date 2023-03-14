@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     const QUANTITY = 10;
     public function run(): void
     {
-        User::query()->delete();
+        // User::query()->delete();
         User::factory()
                 ->count(10)
                 ->create();
