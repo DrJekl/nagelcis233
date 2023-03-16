@@ -5,8 +5,11 @@
         </h2>
     </x-slot>
         <div class="mt-1">
+        @if (session()->get("error"))
+        <div class="text-bg-danger w-50">{{ session()->get("error") }}</div>
+        @endif
         @if ($errors->any())
-        <div class="text-bg-danger w-50" style="background-color: orange">
+        <div class="text-bg-danger w-50">
         @foreach ($errors->all() as $error)
         <span>{{ $error }}</span><br>
         @endforeach
