@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         DB::table('products')->truncate();
         DB::table('reviews')->truncate();
-        $this->call([ProductSeeder::class, ReviewSeeder::class]);
+        DB::table('users')->truncate();
+        $this->call([UserSeeder::class, ProductSeeder::class, ReviewSeeder::class]);
 
     }
 }

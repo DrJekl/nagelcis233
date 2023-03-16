@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("dashboard")
 
 @section("content")
 <div class="d-flex flex-row justify-content-around w-50 p-4">
@@ -40,6 +40,7 @@
         </div>
         <div class="form-group">
             <input name="product_id" type="hidden" value="{{ $product->id }}">
+            <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
         </div>
         <div class="form-group mt-3">
             <button class="btn btn-primary" type="submit">Submit Review</button>
@@ -53,11 +54,14 @@
             <div class="card-body">
                 <h5>Rating: <span class="text-warning">{{ str_repeat($starSymbol, $review->rating) }}</span></h5>
                 <p>{{ $review->comment }}</p>
+                <h6>Reviewed by: {{ $review->user->name }}</h6>
+                @can("delete", App\Models\User::class)
                 <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" onSubmit="return confirm('Are you sure?')">
                     @csrf
                     @method("DELETE")
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                @endcan
             </div>
         </div>
         @endforeach
