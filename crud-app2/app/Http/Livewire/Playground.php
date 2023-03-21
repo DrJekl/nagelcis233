@@ -16,7 +16,9 @@ class Playground extends Component
     public $rating = -1;
     protected $queryString = ["search" => ["except" => ""],
                             "field" => ["except" => ""],
-                            "direction" => ["except" => ""]];
+                            "direction" => ["except" => ""],
+                            "pagination" => ["except" => ""],
+                            "rating" => ["except" => ""]];
     public function render()
     {
         $products = Product::where("name", "like", "%$this->search%")
@@ -54,5 +56,6 @@ class Playground extends Component
         $this->field = request()->query("field", $this->field);
         $this->direction = request()->query("direction", $this->direction);
         $this->amount = request()->query("pagination", $this->amount);
+        $this->rating = request()->query("rating", $this->rating);
     }
 }
