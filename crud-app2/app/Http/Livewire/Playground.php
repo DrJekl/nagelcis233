@@ -12,13 +12,11 @@ class Playground extends Component
     public $field = "name";
     public $direction = "asc";
     public $search = "";
-    public $amount = "all";
-    public $rating = -1;
+    public $amount = 10;
+    public $rating = 5;
     protected $queryString = ["search" => ["except" => ""],
                             "field" => ["except" => ""],
-                            "direction" => ["except" => ""],
-                            "amount" => ["except" => ""],
-                            "rating" => ["except" => ""]];
+                            "direction" => ["except" => ""]];
     public function render()
     {
         $products = Product::where("name", "like", "%$this->search%")

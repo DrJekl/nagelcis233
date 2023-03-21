@@ -20,6 +20,12 @@
                 <option><button wire:click="setPagination('all')">All</button></option>
             </select>
         </div>
+        <div>
+                <button wire:click="setPagination(10)">10</button>
+                <button wire:click="setPagination(25)">25</button>
+                <button wire:click="setPagination(50)">50</button>
+                <button wire:click="setPagination('all')">All</button>
+        </div>
         <div class="w-50">
             <select class="form-select w-50">
                 <option selected>Average Rating</option>
@@ -90,6 +96,38 @@
             @endforeach
         </tbody>
     </table>
+    @if($links)
+        {{ $products->links() }}
+    @endif
+        <div class="d-flex justify-content-between w-50">
+        <div class="w-50">
+            <select class="form-select w-50">
+                <option selected>Results per Page</option>
+                <option><button wire:click="setPagination(10)">10</button></option>
+                <option><button wire:click="setPagination(25)">25</button></option>
+                <option><button wire:click="setPagination(50)">50</button></option>
+                <option><button wire:click="setPagination('all')">All</button></option>
+            </select>
+        </div>
+        <div>
+                <button wire:click="setPagination(10)">10</button>
+                <button wire:click="setPagination(25)">25</button>
+                <button wire:click="setPagination(50)">50</button>
+                <button wire:click="setPagination('all')">All</button>
+        </div>
+        <div class="w-50">
+            <select class="form-select w-50">
+                <option selected>Average Rating</option>
+                <option><button wire:click="getRating(0)">No Ratings</button></option>
+                <option><button wire:click="getRating(1)">{{$starSymbol}}</button></option>
+                <option><button wire:click="getRating(2)">{{str_repeat($starSymbol, 2)}}</button></option>
+                <option><button wire:click="getRating(3)">{{str_repeat($starSymbol, 3)}}</button></option>
+                <option><button wire:click="getRating(4)">{{str_repeat($starSymbol, 4)}}</button></option>
+                <option><button wire:click="getRating(5)">{{str_repeat($starSymbol, 5)}}</button></option>
+                <option><button wire:click="getRating(-1)">All</button></option>
+            </select>
+        </div>
+    </div>
     <div class="my-3">
     </div>
 </div>
