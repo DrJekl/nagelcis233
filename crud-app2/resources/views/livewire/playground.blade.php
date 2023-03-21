@@ -10,7 +10,6 @@
     @if($links)
     {{ $products->links() }}
     @endif
-    stuff: {{ $stuff }}
     <div class="d-flex justify-content-between w-50">
         <div class="w-50">
             <select class="form-select w-50">

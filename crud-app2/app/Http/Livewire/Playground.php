@@ -17,7 +17,7 @@ class Playground extends Component
     protected $queryString = ["search" => ["except" => ""],
                             "field" => ["except" => ""],
                             "direction" => ["except" => ""],
-                            "pagination" => ["except" => ""],
+                            "amount" => ["except" => ""],
                             "rating" => ["except" => ""]];
     public function render()
     {
@@ -28,7 +28,7 @@ class Playground extends Component
                 $products = $products->doesntHave("reviews");
         } else if ($this->rating > 0)  {
                 $products = $products->join("reviews", "products.id", "=", "reviews.product_id")
-                                            ->where("reviews.rating", ">", $this->rating);
+                                            ->where("reviews.rating", "=", $this->rating);
         }
         if ($this->amount == "all") {
             $products = $products->get();
@@ -38,7 +38,7 @@ class Playground extends Component
             $links = true;
         }
 
-        return view("livewire.playground", ["products" => $products, "links" => $links, "stuff" => $this->test]);
+        return view("livewire.playground", ["products" => $products, "links" => $links]);
     }
     public function doSort($field, $direction) {
         $this->field = $field;
